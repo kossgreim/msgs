@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   			:default_url => "/images/:style/missing.png"
 
   validates :name, :user_name, presence: true
+  validates :user_name, uniqueness: true
   
 end
