@@ -1,9 +1,8 @@
-<div class="users-wrap">
-	<% @users.each do |user| %>
-		<div class="user-wrap">
-			<span class="user-name"><%= user.email %></span>
-			<span class="user-reg-date"><%= user.created_at %></span>
-			<%= link_to 'add to friends', '#' %>
-		</div>
-	<% end %> 
+<div class="row">
+  	<% @users.each do |user| %>
+		<%= image_tag user.avatar.url(:thumb) %><br>
+		<%= link_to user.name, '' %><br>
+		<%= link_to "edit profile", edit_user_registration_path %>
+	
+	<% end %>		
 </div>
