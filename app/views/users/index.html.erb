@@ -1,0 +1,9 @@
+<div class="users-wrap">
+	<% @users.each do |user| %>
+		<div class="user-wrap">
+			<span class="user-name"><%= user.email %></span>
+			<span class="user-reg-date"><%= user.created_at %></span>
+			<%= link_to 'add to friends', '#' %>
+		</div>
+	<% end %> 
+</div>

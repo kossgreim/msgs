@@ -1,4 +1,7 @@
 Msgs::Application.routes.draw do
+  get "users", to: "users#index"
+
+  root "users#index"
   devise_for :users
   
   devise_scope :user do 
