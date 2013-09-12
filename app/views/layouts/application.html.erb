@@ -49,9 +49,8 @@
           <a class="brand" href="#">Msgs</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <%= render 'devise/menu/registration_items' %>
+              <%= render 'devise/menu/login_items' %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -60,7 +59,7 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+        <!--<div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
@@ -68,14 +67,14 @@
               <li><%= link_to "Link2", "/path2"  %></li>
               <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
-          </div><!--/.well -->
+          </div>--><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
-
+      <br/><br/>
       <footer>
         <p>&copy; Company 2013</p>
       </footer>
