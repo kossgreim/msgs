@@ -1,0 +1,24 @@
+<%= link_to "Find Friends", users_path %>
+
+<h2>My friends</h2>
+<table>
+  <% for friendship in @user.friendships %>
+    <tr>
+    	<td><%= image_tag friendship.friend.avatar.url(:thumb) %></td>
+  		<td><%= link_to friendship.friend.name, '' %></td>
+  		<td><%= link_to 'send message', '' %></td>
+	</tr>
+  <% end %>
+</table>
+
+
+<h2>I'm in friends</h2>
+<table>
+  <% for user in @user.inverse_friends %>
+    <tr>
+		<td><%= image_tag user.avatar.url(:thumb) %></td>
+		<td><%= link_to user.name, '' %></td>
+		<td><%= link_to 'send message', '' %></td>
+    </tr>
+  <% end %>
+</table>

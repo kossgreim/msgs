@@ -13,4 +13,6 @@ Msgs::Application.routes.draw do
     get "sign_out", to: "devise/sessions#destroy"
   end
 
+  get "friends", to: "friendships#index"
+
 end

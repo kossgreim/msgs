@@ -1,9 +1,12 @@
 
 <div class="row">
   	<% @users.each do |user| %>
+  	<div>
 		<%= image_tag user.avatar.url(:thumb) %><br>
 		<%= link_to user.name, '' %><br>
-		<%= link_to "edit profile", edit_user_registration_path %>
-	
+
+		<%= add_if_user_not_current(user, current_user) %>
+	</div>
+	<hr><br>
 	<% end %>		
 </div>
