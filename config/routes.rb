@@ -1,4 +1,5 @@
 Msgs::Application.routes.draw do
+  resources :friendships
   get "users", to: "users#index"
 
   root "users#index"

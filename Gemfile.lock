@@ -62,10 +62,14 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.1)
     mime-types (1.25)
     minitest (4.7.5)
+    mocha (0.14.0)
+      metaclass (~> 0.0.1)
     multi_json (1.8.0)
     mysql2 (0.3.13)
+    nifty-generators (0.4.6)
     orm_adapter (0.4.0)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
@@ -143,7 +147,9 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  mocha
   mysql2
+  nifty-generators
   paperclip
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)

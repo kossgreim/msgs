@@ -42,6 +42,10 @@ gem 'cancan'
 
 gem 'paperclip'
 
+gem "nifty-generators", :group => :development
+
+gem 'mocha'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -53,3 +57,5 @@ gem 'paperclip'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "mocha", group: :test
