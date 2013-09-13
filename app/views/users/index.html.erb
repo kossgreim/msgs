@@ -1,12 +1,11 @@
 
 <div class="row">
-  	<% @users.each do |user| %>
-  	<div>
-		<%= image_tag user.avatar.url(:thumb) %><br>
-		<%= link_to user.name, '' %><br>
-
-		<%= add_if_user_not_current(user, current_user) %>
-	</div>
-	<hr><br>
-	<% end %>		
+	<table class='users-list-wrap'>
+	  	<% @users.each do |user| %>
+	  	<tr class='users-current-user'>
+			<td class='users-image-field'><%= image_tag user.avatar.url(:thumb) %></td>
+			<td class='users-name-field'><%= link_to user.name, '' %></td>
+			<td class='users-controls-field'><%= add_if_user_not_current(user, current_user) %></td>
+		<% end %>
+	</table>		
 </div>

@@ -20,3 +20,25 @@
 .pull-left {
   float: left !important;
 }
+
+/* ================== */
+.users-image-field{
+	padding: 10px 0 10px 0;
+	width: 100px;
+}
+.users-name-field{
+	width: 250px;
+	padding: 0px 0 70px 10px;
+	font-weight: bold;
+}
+
+.users-controls-field{
+	width: 100px;
+	font-size: 12px;
+	padding: 0 0 70px;
+}
+
+.users-current-user{
+	height: 120px;
+	border-top: 1px solid #ededed;
+}

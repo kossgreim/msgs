@@ -4,7 +4,7 @@ module UsersHelper
 		if user_signed_in?
 			if user.id != current_user[:id]
 				if Friendship.exists? friend_id: user.id
-					link_to "remove", friends_path, :method => :delete 
+					link_to "remove", friends_path, :method => :delete
 				else
 					link_to "Add Friend", friendships_path(:friend_id => user), :method => :post 
 				end
