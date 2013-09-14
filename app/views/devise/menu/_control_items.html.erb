@@ -1,5 +1,8 @@
 <% if user_signed_in? %>
 	<li>
+		<%= link_to "My profile", current_user[:user_name] %>
+	</li>
+	<li>
 		<%= link_to "Friends", friends_path %>
 	</li>
 <% end %>
