@@ -44,7 +44,7 @@ gem 'paperclip'
 
 gem "nifty-generators", :group => :development
 
-gem 'mocha'
+gem 'mocha', :require => false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

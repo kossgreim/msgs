@@ -1,24 +1,43 @@
 <%= link_to "Find Friends", users_path %>
 
 <h2>My friends</h2>
-<table>
-  <% for friendship in @user.friendships %>
-    <tr>
-    	<td><%= image_tag friendship.friend.avatar.url(:thumb) %></td>
-  		<td><%= link_to friendship.friend.name, '' %></td>
-  		<td><%= link_to 'send message', '' %></td>
-	</tr>
-  <% end %>
-</table>
+<div class="row">
+  <table class='users-list-wrap'>
+      <% for friendship in @user.friendships %>
+      <tr class='users-current-user'>
+        <td class='users-image-field'>
+          <%= image_tag friendship.friend.avatar.url(:thumb) %>
+        </td>
+        <td class='users-name-field'>
+          <%= link_to friendship.friend.name, "/#{friendship.friend.user_name}" %>
+        </td>
+        <td class='users-controls-field'><%= link_to 'Send message', '' %>
+          <br><%= link_to "Remove friend", friendship, :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>    
+</div>
 
 
 <h2>I'm in friends</h2>
-<table>
-  <% for user in @user.inverse_friends %>
-    <tr>
-		<td><%= image_tag user.avatar.url(:thumb) %></td>
-		<td><%= link_to user.name, '' %></td>
-		<td><%= link_to 'send message', '' %><br><%= link_to "remove", friendship, :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+
+
+<div class="row">
+  <table class='users-list-wrap'>
+      <% for user in @user.inverse_friends %>
+      <tr class='users-current-user'>
+        
+        <td class='users-image-field'>
+          <%= image_tag user.avatar.url(:thumb) %>
+        </td>
+        <td class='users-name-field'>
+          <%= link_to user.name, "/#{user.user_name}" %>
+        </td>
+        <td class='users-controls-field'>
+          <%= link_to 'Send message', '' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>    
+</div>

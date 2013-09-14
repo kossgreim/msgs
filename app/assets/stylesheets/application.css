@@ -35,7 +35,14 @@
 .users-controls-field{
 	width: 100px;
 	font-size: 12px;
-	padding: 0 0 70px;
+}
+
+.users-controls-field a{
+	text-decoration: none !important;
+}
+
+.users-controls-field a:hover{
+	background-color: #ededed;
 }
 
 .users-current-user{

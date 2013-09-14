@@ -1,5 +1,8 @@
 Msgs::Application.routes.draw do
   resources :friendships
+  
+
+
   get "users", to: "users#index"
 
   root "users#index"
@@ -14,5 +17,10 @@ Msgs::Application.routes.draw do
   end
 
   get "friends", to: "friendships#index"
+
+  #url like site.com/username
+  scope ":user_name" do
+      get '', to: 'users#show'
+  end
 
 end

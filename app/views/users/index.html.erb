@@ -5,7 +5,8 @@
 	  	<tr class='users-current-user'>
 			<td class='users-image-field'><%= image_tag user.avatar.url(:thumb) %></td>
 			<td class='users-name-field'><%= link_to user.name, '' %></td>
-			<td class='users-controls-field'><%= add_if_user_not_current(user, current_user) %></td>
+			<td class='users-controls-field'><%= add_control_links(user, current_user) %></td>
+		</tr>
 		<% end %>
 	</table>		
 </div>
