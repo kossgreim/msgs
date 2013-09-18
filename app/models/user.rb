@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_attached_file :avatar, :styles => { :large => "500x500>", :thumb => "100x100#", :profile => "300x300#" }, 
+  has_attached_file :avatar, :styles => { :large => "500x500>", :little => "50x50#", :thumb => "100x100#", :profile => "300x300#" }, 
   			:default_url => "/images/:style/missing.png"
 
   validates :name, :user_name, presence: true

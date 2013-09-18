@@ -1,10 +1,11 @@
-<h1>New Conversation</h1>
+<h4>New Conversation</h4>
+
 
 <%= form_for(@conversation) do |f| %>
   <div>
     <%= f.label :to %><br />
     <% for user in @friends do %>
-      <%= check_box_tag "user_conversation[to][]", user.id %> <%= user.friend.name %><br />
+      <%= check_box_tag "user_conversation[to][]", user.friend.id %> <%= user.friend.name %><br />
     <% end %>
     <br>
   </div>

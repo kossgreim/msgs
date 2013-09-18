@@ -2,6 +2,7 @@ Msgs::Application.routes.draw do
   resources :friendships
   resources :user_conversations
   get "users", to: "users#index"
+  post "mark_as_read_conversation", to: "user_conversations#mark_as_read"
 
   root "users#index"
   devise_for :users
