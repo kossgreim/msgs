@@ -1,6 +1,13 @@
 Msgs::Application.routes.draw do
   resources :friendships
-  resources :user_conversations
+   
+  resources :user_conversations, :controller => "user_conversations" do
+    resources :messages
+    member do
+      post :mark_as_read
+      post :mark_as_unread
+    end
+  end
   get "users", to: "users#index"
   post "mark_as_read_conversation", to: "user_conversations#mark_as_read"
 
