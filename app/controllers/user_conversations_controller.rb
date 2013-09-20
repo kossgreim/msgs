@@ -28,6 +28,12 @@ class UserConversationsController < ApplicationController
 		@conversation.conversation.messages.first.user = current_user
 		
 		@conversation.save!
+		
+		if !@conversation.to.blank?
+			@conversation.to.each do |t|
+				UserConversation.create :user_id => t, :conversation => @conversation.conversation
+			end
+		end
 
 		redirect_to user_conversation_path(@conversation)
 	end
@@ -53,7 +59,7 @@ class UserConversationsController < ApplicationController
 	end
 
 	def user_conversation_params
-		params.require(:user_conversation).permit(:to, :deleted, :user_id, :conversation_id, :read, 
+		params.require(:user_conversation).permit(:deleted, :user_id, :conversation_id, :read, to: [],
 			conversation_attributes: [:id, :subject, messages_attributes: [:id, :body, :user_id, :conversation_id]])
 	end
 

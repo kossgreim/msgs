@@ -9,7 +9,7 @@ class UserConversation < ActiveRecord::Base
 	delegate :subject, to: :conversation
 	delegate :users, to: :conversation
 
-	after_create :create_user_conversations
+	#before_create :create_user_conversations
 	
 
 	private
@@ -17,7 +17,7 @@ class UserConversation < ActiveRecord::Base
 	  def create_user_conversations
 	   #return if to.blank?
 	  	
-	   to.each do |recip|
+	   for recip in to
 	     UserConversation.create :user_id => recip, :conversation => conversation
 	    end
 	  end
