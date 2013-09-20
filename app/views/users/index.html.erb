@@ -4,7 +4,7 @@
 	  	<% @users.each do |user| %>
 	  	<tr class='users-current-user'>
 			<td class='users-image-field'><%= image_tag user.avatar.url(:thumb) %></td>
-			<td class='users-name-field'><%= link_to user.name, root_path+"/"+user.user_name %></td>
+			<td class='users-name-field'><%= link_to user.name, user_profile_path(user.user_name) %></td>
 			<td class='users-controls-field'><%= add_control_links(user, current_user) %></td>
 		</tr>
 		<% end %>

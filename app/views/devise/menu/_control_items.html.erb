@@ -1,8 +1,11 @@
 <% if user_signed_in? %>
 	<li>
-		<%= link_to "My profile", current_user[:user_name] %>
+		<%= link_to "My profile", user_profile_path(current_user[:user_name]) %>
 	</li>
 	<li>
 		<%= link_to "Friends", friends_path %>
+	</li>
+	<li>
+		<%= link_to "Messages", user_conversations_path %>
 	</li>
 <% end %>

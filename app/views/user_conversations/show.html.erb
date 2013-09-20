@@ -9,16 +9,18 @@
   </ul>
 </div>
 <% for message in @conversation.messages do %>
-  <div class="message"><%= time_ago_in_words(message.created_at) %> ago, <%= message.user.name %> wrote:
+  <div class="message"><%= time_ago_in_words(message.created_at) %> ago, <b><%= message.user.name %></b> wrote:
     <div class="message_body"><%= message.body %></div>
   </div>
 <% end %>
 
 <% if current_user == @conversation.user && !@conversation.read? %>
-  <%= link_to "Mark as read", mark_as_read_conversation_path(@conversation), :method => :post %>
+  <%= link_to "Mark as read", mark_as_read_user_conversation_path(@conversation), :method => :post %>
 <% elsif current_user == @conversation.user && @conversation.read? %>
-  <%= link_to "Mark as unread", mark_as_unread_conversation_path(@conversation), :method => :post %>
+  <%= link_to "Mark as unread", mark_as_unread_user_conversation_path(@conversation), :method => :post %>
 <% end %>
 <br />
+
+  <%= render "messages/write", message: @message %>
 
 <%= link_to "Back to conversations", user_conversations_path(@user) %>

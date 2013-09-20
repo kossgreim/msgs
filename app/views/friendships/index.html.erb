@@ -9,7 +9,7 @@
           <%= image_tag friendship.friend.avatar.url(:thumb) %>
         </td>
         <td class='users-name-field'>
-          <%= link_to friendship.friend.name, "/#{friendship.friend.user_name}" %>
+          <%= link_to friendship.friend.name, user_profile_path(friendship.friend.user_name) %>
         </td>
         <td class='users-controls-field'><%= link_to 'Send message', '' %>
           <br><%= link_to "Remove friend", friendship, :method => :delete %>

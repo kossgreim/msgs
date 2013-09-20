@@ -8,6 +8,7 @@ class UserConversationsController < ApplicationController
 
 	def show 
 		@conversation = UserConversation.find(params[:id])
+		@message = Message.new(conversation_id: @conversation.conversation_id, user_id: current_user[:id])
 	end
 
 	def new 
@@ -16,6 +17,7 @@ class UserConversationsController < ApplicationController
 
 		@conversation = @user.user_conversations.build
 		@conversation.build_conversation.messages.build
+
 		#raise YAML::dump(@conversation.conversation)
 	end
 
