@@ -6,6 +6,8 @@
 		<%= link_to "Friends", friends_path %>
 	</li>
 	<li>
-		<%= link_to "Messages", user_conversations_path %>
+		<%= link_to user_conversations_path do  %>
+			 Messages <span class="badge"><%= get_count_of_unread_messages %></span>
+		<% end %>
 	</li>
 <% end %>

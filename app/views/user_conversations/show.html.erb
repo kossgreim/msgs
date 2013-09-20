@@ -1,26 +1,27 @@
 <h1><%= @conversation.subject %></h1>
 
-<div>
-  <h2>People in this conversation:</h2>
-  <ul>
-    <% for user in @conversation.users do %>
-      <li><%= link_to user.name, user.user_name %></li>
-    <% end %>
-  </ul>
-</div>
-<% for message in @conversation.messages do %>
-  <div class="message"><%= time_ago_in_words(message.created_at) %> ago, <b><%= message.user.name %></b> wrote:
-    <div class="message_body"><%= message.body %></div>
+<div class="row">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            Users in this conversation
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= render "messages/members", conversation: @conversation %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div><br>
 
-<% if current_user == @conversation.user && !@conversation.read? %>
-  <%= link_to "Mark as read", mark_as_read_user_conversation_path(@conversation), :method => :post %>
-<% elsif current_user == @conversation.user && @conversation.read? %>
-  <%= link_to "Mark as unread", mark_as_unread_user_conversation_path(@conversation), :method => :post %>
-<% end %>
-<br />
-
+<div class="row">  
+  <%= render "messages/messages", messages: @conversation.messages %>
   <%= render "messages/write", message: @message %>
+</div>
 
 <%= link_to "Back to conversations", user_conversations_path(@user) %>

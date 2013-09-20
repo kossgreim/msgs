@@ -1,0 +1,16 @@
+<div class="media-list" id="messages-area">
+  
+  <% for message in messages do %>
+    
+    <div class="media"> 
+      <div class="media_body">
+         <span class="media-heding">
+            <strong><%= link_to message.user.name, user_profile_path(message.user.user_name) %></strong>
+            <span class="msg-time pull-right" class="text-right"><%= time_ago_in_words(message.created_at) %> ago.</span>
+         </span><br>
+          <%= message.body %><br>
+      </div>
+    </div>
+   
+  <% end %>
+</div>

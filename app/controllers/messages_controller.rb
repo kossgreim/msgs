@@ -12,9 +12,19 @@ class MessagesController < ApplicationController
 
   def create
       @message = Message.new(message_params)
-      @message.save!
-      @conversation = UserConversation.where(conversation_id: @message.conversation_id)
-      redirect_to :back
+      
+      respond_to do |format|
+        if @message.save
+          @conversation = Conversation.find(@message.conversation_id)
+          format.html { redirect_to user_conversation_path(@conversation.id) }
+          format.js  {@messages = @conversation.messages}
+          format.json 
+        else
+          format.html 
+          format.json { render json: @message.errors,
+            status: :unprocessable_entity }
+        end
+      end
   end
 
   def update

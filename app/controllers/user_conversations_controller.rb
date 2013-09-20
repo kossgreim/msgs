@@ -8,6 +8,7 @@ class UserConversationsController < ApplicationController
 
 	def show 
 		@conversation = UserConversation.find(params[:id])
+		check_messages(@conversation)
 		@message = Message.new(conversation_id: @conversation.conversation_id, user_id: current_user[:id])
 	end
 
@@ -50,6 +51,17 @@ class UserConversationsController < ApplicationController
 		@conversation.update_attributes read: false
 
 		redirect_to user_conversation_path(current_user, @conversation)
+	end
+
+	def check_messages(conversation)
+		messages = Message.where(conversation_id: conversation.conversation_id).where("user_id <> ?", current_user[:id])
+
+		messages.each do |m|
+			if !m.read?
+				m.update_attributes read: true
+			end
+		end
+
 	end
 
 	private 

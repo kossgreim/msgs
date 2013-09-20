@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
  
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  helper_method :get_count_of_unread_messages
+  
+  def get_count_of_unread_messages
+      user_con = User.find(current_user).user_conversations
+      cnt = 0
+      for con in user_con
+        cnt+= Message.where(conversation_id: con.conversation_id, read: false).where("user_id <> ?", current_user[:id]).count
+      end
+      cnt == 0 ? '' : cnt
+  end
 
   protected
 
@@ -14,9 +24,10 @@ class ApplicationController < ActionController::Base
 
   def not_found
   	respond_to do |format|
-    format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-    format.xml  { head :not_found }
-    format.any  { head :not_found }
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
   end
-  end
+
 end

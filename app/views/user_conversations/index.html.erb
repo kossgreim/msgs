@@ -1,8 +1,8 @@
 
 <h4><%= @user.name %>'s Conversations</h4>
-<ul>
+<ul class="list-group">
   <% for conversation in @conversations do %>
-    <li class=""><%= link_to conversation.subject, user_conversation_path(conversation) %></li>
+    <li class="list-group-item"><%= link_to conversation.subject, user_conversation_path(conversation) %></li>
   <% end %>
 </ul>
 
