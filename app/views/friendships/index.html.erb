@@ -11,17 +11,16 @@
         <td class='users-name-field'>
           <%= link_to friendship.friend.name, user_profile_path(friendship.friend.user_name) %>
         </td>
-        <td class='users-controls-field'><%= link_to 'Send message', '' %>
-          <br><%= link_to "Remove friend", friendship, :method => :delete %>
+        <td class='users-controls-field'>
+          <%= link_to "Send a message", '', :id => 'message-link', "data-toggle" => "modal" %>
+          <br><%= link_to "Remove friend", friendship, :method => :delete, confirm: "Are you sure?" %>
         </td>
       </tr>
     <% end %>
   </table>    
 </div>
 
-
 <h2>I'm in friends</h2>
-
 
 <div class="row">
   <table class='users-list-wrap'>
@@ -41,3 +40,5 @@
     <% end %>
   </table>    
 </div>
+
+<%= render "friendships/shared/new_message", conversation: @conversation, friends: @friends %>

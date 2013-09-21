@@ -1,4 +1,5 @@
 class UserConversationsController < ApplicationController
+	before_filter :authenticate_user!
 	before_action :set_conversation, only: [:show, :edit, :update, :destroy]
 
 	def index 
@@ -23,7 +24,6 @@ class UserConversationsController < ApplicationController
 		@conversation = @user.user_conversations.build
 		@conversation.build_conversation.messages.build
 
-		#raise YAML::dump(@conversation.conversation)
 	end
 
 	def create 

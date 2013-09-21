@@ -4,9 +4,11 @@
 <%= form_for(@conversation) do |f| %>
   <div>
     <%= f.label :to %><br />
-    <% for user in @friends do %>
-      <%= check_box_tag "user_conversation[to][]", user.friend.id %> <%= user.friend.name %><br />
-    <% end %>
+      <select multiple class="form-control" id="friends_list" name="user_conversation[to][]">
+        <% for user in @friends %>
+          <option value="<%= user.friend.id %>"><%= user.friend.name %></option>
+        <% end %>
+      </select>
     <br>
   </div>
   <%= f.fields_for :conversation do |c| %>
@@ -22,5 +24,5 @@
     <% end %>
   <% end %>
 
-  <%= f.submit %>
+  <%= f.submit "Create conversation", class: "btn btn-primary" %>
 <% end %>

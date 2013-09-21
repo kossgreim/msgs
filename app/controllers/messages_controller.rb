@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-
+  before_filter :authenticate_user!
   def index 
       @conversation = UserConversation.find(params[:user_conversation_id])
       @messages = @conversation.messages

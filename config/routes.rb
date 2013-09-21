@@ -24,7 +24,7 @@ Msgs::Application.routes.draw do
   end
 
   get "friends", to: "friendships#index"
-
+  post "friends", to: "friendships#destroy"
 
   #url like site.com/username
   get ":user_name", to: "users#show", as: "user_profile"
