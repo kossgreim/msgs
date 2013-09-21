@@ -1,9 +1,10 @@
 
 <h4><%= @user.name %>'s Conversations</h4>
-<ul class="list-group">
-  <% for conversation in @conversations do %>
-    <li class="list-group-item"><%= link_to conversation.subject, user_conversation_path(conversation) %></li>
-  <% end %>
-</ul>
 
-<%= link_to "Create a New Conversation", new_user_conversation_path(@user)%>
+<div id="conversations-list-wrap">
+    <%= render "conversations", conversations: @conversations %>
+</div>
+<br>
+<div class="row-fluid">
+    <%= link_to "Create a New Conversation", new_user_conversation_path(@user), class: "btn btn-primary" %>
+</div>

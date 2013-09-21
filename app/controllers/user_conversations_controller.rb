@@ -10,6 +10,10 @@ class UserConversationsController < ApplicationController
 		@conversation = UserConversation.find(params[:id])
 		check_messages(@conversation)
 		@message = Message.new(conversation_id: @conversation.conversation_id, user_id: current_user[:id])
+
+		if @conversation.deleted?
+			redirect_to user_conversation_path
+		end
 	end
 
 	def new 
@@ -53,6 +57,17 @@ class UserConversationsController < ApplicationController
 		redirect_to user_conversation_path(current_user, @conversation)
 	end
 
+	def destroy
+		@conversation = UserConversation.find(params[:id])
+		@conversation.update_attributes deleted: true
+
+		@conversations = User.find(current_user).user_conversations
+
+		respond_to do |format|
+			format.js {@conversations}
+		end
+	end
+
 	def check_messages(conversation)
 		messages = Message.where(conversation_id: conversation.conversation_id).where("user_id <> ?", current_user[:id])
 
@@ -61,7 +76,6 @@ class UserConversationsController < ApplicationController
 				m.update_attributes read: true
 			end
 		end
-
 	end
 
 	private 

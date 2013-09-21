@@ -6,3 +6,8 @@
 	font: 10px/10px Helvetica, Arial, serif;
 	color: #777;
 }
+
+#messages-area{
+	overflow-y: scroll;
+	height: 300px;
+}
