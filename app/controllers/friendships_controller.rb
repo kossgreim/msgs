@@ -9,8 +9,6 @@ class FriendshipsController < ApplicationController
 
     @conversation = @user_c.user_conversations.build
     @conversation.build_conversation.messages.build
-
-    
   end
 
   def create

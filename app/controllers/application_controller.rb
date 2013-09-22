@@ -9,8 +9,13 @@ class ApplicationController < ActionController::Base
   def get_count_of_unread_messages
       user_con = User.find(current_user).user_conversations
       cnt = 0
-      for con in user_con
-        cnt+= Message.where(conversation_id: con.conversation_id, read: false).where("user_id <> ?", current_user[:id]).count
+      for con in user_con 
+        result = Message.where(conversation_id: con.conversation_id, read: false).where("user_id <> ?", current_user[:id]).count
+        cnt += result
+
+        if result != 0
+            con.update_attributes read: false
+        end
       end
       cnt == 0 ? '' : cnt
   end

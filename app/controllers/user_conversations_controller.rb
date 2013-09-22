@@ -71,6 +71,10 @@ class UserConversationsController < ApplicationController
 	def check_messages(conversation)
 		messages = Message.where(conversation_id: conversation.conversation_id).where("user_id <> ?", current_user[:id])
 
+		if !conversation.read?
+			conversation.update_attributes read: true
+		end
+
 		messages.each do |m|
 			if !m.read?
 				m.update_attributes read: true

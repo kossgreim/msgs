@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920163412) do
+ActiveRecord::Schema.define(version: 20130922150103) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20130920163412) do
     t.integer  "user_id"
     t.integer  "conversation_id"
     t.boolean  "deleted"
-    t.boolean  "read"
+    t.boolean  "read",            default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
