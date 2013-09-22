@@ -4,7 +4,9 @@
 
 #conversatinons-list{
 	width: 400px;
-	border: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 
 	.list-group-item a{
 		text-decoration: none;
@@ -26,6 +28,7 @@
 	}
 
 }
+
 
 
 

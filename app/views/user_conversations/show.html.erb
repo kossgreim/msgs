@@ -20,7 +20,7 @@
 </div><br>
 
 <div class="row">  
-  <%= render "messages/messages", messages: @conversation.messages %>
+  <%= render "messages/messages", messages: @conversation.messages.limit(25) %>
   <%= render "messages/write", message: @message %>
 </div>
 

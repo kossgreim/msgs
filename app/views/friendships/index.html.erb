@@ -1,7 +1,7 @@
 <%= link_to "Find Friends", users_path %>
 
+<div class="span9">
 <h2>My friends</h2>
-<div class="row">
   <table class='users-list-wrap'>
       <% for friendship in @user.friendships %>
       <tr class='users-current-user'>
@@ -12,17 +12,19 @@
           <%= link_to friendship.friend.name, user_profile_path(friendship.friend.user_name) %>
         </td>
         <td class='users-controls-field'>
-          <%= link_to "Send a message", '', :id => 'message-link', "data-toggle" => "modal" %>
+          <%= link_to "Send a message", '#message_model', :class => 'message-link', "data-toggle" => "modal", 
+                  "user-id" => "#{friendship.friend.id}"  %>
           <br><%= link_to "Remove friend", friendship, :method => :delete, confirm: "Are you sure?" %>
         </td>
       </tr>
     <% end %>
   </table>    
+
 </div>
 
+<div class="span9">
 <h2>I'm in friends</h2>
 
-<div class="row">
   <table class='users-list-wrap'>
       <% for user in @user.inverse_friends %>
       <tr class='users-current-user'>

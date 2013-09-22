@@ -35,6 +35,9 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+
+    <%= javascript_include_tag "jquery.multiselect" %>
+    <%= javascript_include_tag "jquery.multiselect.filter" %>
   </head>
   <body>
 
@@ -46,8 +49,8 @@
             <ul class="nav navbar-nav">
               <%= render 'devise/menu/control_items' %>
               <%= render 'devise/menu/registration_items' %>
-              <%= render 'devise/menu/login_items' %>
             </ul>
+            <%= render 'devise/menu/login_items' %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
