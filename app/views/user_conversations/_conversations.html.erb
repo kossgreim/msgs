@@ -1,0 +1,24 @@
+<div class="list-group" id="conversatinons-list">
+  <% for conversation in conversations do %>
+    <% if !conversation.deleted? %>
+        <div class="list-group-item <%= check_read_status(conversation) %> ">
+            <%= link_to 'delete', user_conversation_path(conversation), method: :delete, 
+                    class: "pull-right delete-con", remote: true, confirm: "are you sure?" %>
+            <%= link_to user_conversation_path(conversation) do %>
+            	    <h4 class="list-group-item-heading msg-head"><%= conversation.subject %></h4>
+            	    <p class="list-group-item-text">
+            	    	<strong> 
+            	    		<%= conversation.messages.last.user.name %>
+            	    	</strong>
+            	    	: <span class="msg-body"><%= conversation.messages.last.body %></span><br>
+                          <span class="msg-time con-msg-time">
+                            <%= time_ago_in_words(conversation.messages.last.created_at) %> ago.
+                          </span>
+            	    </p>
+            <% end %>
+            
+        </div>
+    <% end %>
+  <% end %>
+</div>
+

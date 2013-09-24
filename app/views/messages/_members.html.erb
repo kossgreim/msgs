@@ -1,0 +1,18 @@
+<div class="media-list" id = "conversation-members">
+    <% for user in conversation.users do %>
+    
+    <div class="media">
+      <%= link_to user_profile_path(user.user_name), class: "pull-left" do %>
+        <%= image_tag user.avatar.url(:thumb) %>
+      <% end %>
+
+      <div class="media-body">
+        <span class="media-heading">
+          <%= link_to user.name, user_profile_path(user.user_name) %>
+        </span>
+      </div>
+
+    </div>
+    
+    <% end %>
+</div>

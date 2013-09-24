@@ -15,3 +15,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require jquery.ui.all
+
+//= require jquery.multiselect
+//= require jquery.multiselect.filter
