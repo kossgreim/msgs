@@ -1,1 +1,11 @@
-<%= @user.name %>
+<div class="profile_wrap">
+	<div class="left_block">
+		<div id="avatar">
+			<%= image_tag @user.avatar(:thumb) %>
+		</div>
+	</div>
+
+	<div class="right_block">
+		<span class="user_name"><%= @user.name %></span>
+	</div>
+</div>	

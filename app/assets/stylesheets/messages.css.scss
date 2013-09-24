@@ -1,0 +1,24 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.msg-time{
+	font: 10px/10px Helvetica, Arial, serif;
+	color: #777;
+}
+
+#messages-area{
+	overflow-y: scroll;
+	height: 300px;
+	border: 1px solid #ddd;
+	padding: 10px;
+}
+
+.unread_message{
+	background-color: #EDF6FF;
+}
+
+.message-text-area{
+	width: 350px;
+	height: 75px;
+}

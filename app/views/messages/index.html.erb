@@ -1,0 +1,5 @@
+<% for message in @messages do %>
+  <div class="message"><%= time_ago_in_words(message.created_at) %> ago, <b><%= message.user.name %></b> wrote:
+    <div class="message_body"><%= message.body %></div>
+  </div>
+<% end %>

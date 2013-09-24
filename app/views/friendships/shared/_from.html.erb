@@ -1,0 +1,30 @@
+<div class="modal-body">
+    <%= form_for(conversation) do |f| %>
+      <div>
+        <%= f.label :to %><br />
+          <select multiple class="form-control" id="friends_list" name="user_conversation[to][]">
+            <% for user in friends %>
+              <option value="<%= user.friend.id %>"><%= user.friend.name %></option>
+            <% end %>
+          </select>
+        <br>
+      </div>
+      <%= f.fields_for :conversation do |c| %>
+        <div>
+          <%= c.label :subject %>
+          <%= c.text_field :subject %>
+        </div>
+        <%= c.fields_for :messages do |m| %>
+          <div>
+            <%= m.label :body %><br />
+            <%= m.text_area :body %>
+          </div>
+        <% end %>
+      <% end %>
+</div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       <%= f.submit "Create conversation", class: "btn btn-primary" %>
+    <% end %>
+</div>
+      

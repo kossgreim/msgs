@@ -1,0 +1,11 @@
+	<br>
+	<%= form_for message, html: {id: "message-data"}, remote: true do |f| %>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.text_area :body, class: "message-text-area",  palceholder: "Tap your message.." %>
+				<%= f.hidden_field :conversation_id %>
+				<%= f.hidden_field :user_id %>
+				<%= f.submit "Send", class: "btn btn-primary", id: "send-message-btn" %>
+			</div>
+		</div>
+	<% end %>

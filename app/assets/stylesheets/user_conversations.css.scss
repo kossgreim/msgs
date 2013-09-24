@@ -1,0 +1,56 @@
+// Place all the styles related to the user_conversations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#conversatinons-list{
+	width: 400px;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+
+	.list-group-item a{
+		text-decoration: none;
+	}
+
+	.list-group-item{
+		border-bottom: 1px solid #ddd;
+		padding: 0 10px 0 10px;
+	}
+
+	.delete-con{
+		display: none;
+	}
+
+	.list-group-item:hover{
+		.delete-con{
+			display: inline-block;
+		}
+		.msg-head{
+			color: #2B44FF;
+		}
+	}
+}
+
+.unread{
+	background-color: #eee;
+}
+
+.con-msg-time{
+	margin-top: -5px;
+}
+
+.msg-body{
+	color: #4066FF;
+}
+
+.msg-head{
+	color: #001EFF;
+}
+
+
+
+
+
+
+
+

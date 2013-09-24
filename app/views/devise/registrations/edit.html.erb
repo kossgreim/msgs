@@ -24,6 +24,13 @@
     </div>
 </div>
 
+<div class="control-group">
+    <%= f.label :avatar, :class => 'control-label'%>
+    <div class="controls">
+      <%= f.file_field :avatar, :class=> "file-field" %>
+  </div>
+</div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

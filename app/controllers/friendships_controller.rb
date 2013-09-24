@@ -1,7 +1,14 @@
 class FriendshipsController < ApplicationController
   before_filter :authenticate_user! 
+  
   def index 
     @user = current_user
+
+    @user_c = User.find(current_user)
+    @friends = @user.friendships
+
+    @conversation = @user_c.user_conversations.build
+    @conversation.build_conversation.messages.build
   end
 
   def create

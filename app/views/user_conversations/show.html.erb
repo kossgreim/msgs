@@ -1,0 +1,29 @@
+<h1><%= @conversation.subject %></h1>
+
+<div class="row">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            Users in this conversation
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= render "messages/members", conversation: @conversation %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><br>
+
+<div class="row">
+  <div class="media-list" id="messages-area">
+    <%= render "messages/messages", messages: @conversation.messages.limit(25) %>
+  </div>
+  <%= render "messages/write", message: @message %>
+</div>
+
+<%= link_to "Back to conversations", user_conversations_path(@user) %>

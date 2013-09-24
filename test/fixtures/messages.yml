@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  conversation_id: 1
+  deleted: false
+  body: MyText
+
+two:
+  user_id: 1
+  conversation_id: 1
+  deleted: false
+  body: MyText
