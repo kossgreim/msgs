@@ -6,3 +6,4 @@
 $ ->
     $('#messages-area').scrollTop($('#messages-area')[0].scrollHeight); #scroll bottom for chat area
 
+

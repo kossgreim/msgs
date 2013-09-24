@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130922150103) do
+ActiveRecord::Schema.define(version: 20130922160352) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "between"
   end
 
   create_table "friendships", force: true do |t|

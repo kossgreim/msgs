@@ -10,8 +10,15 @@
 #messages-area{
 	overflow-y: scroll;
 	height: 300px;
+	border: 1px solid #ddd;
+	padding: 10px;
 }
 
 .unread_message{
 	background-color: #EDF6FF;
+}
+
+.message-text-area{
+	width: 350px;
+	height: 75px;
 }

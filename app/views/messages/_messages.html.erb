@@ -1,6 +1,4 @@
-<div class="media-list" id="messages-area">
-  
-  <% for message in messages do %>
+<% for message in messages do %>
     
     <div class="media"> 
       <div class="media_body <%= check_read_message(message) %>">
@@ -13,4 +11,3 @@
     </div>
    
   <% end %>
-</div>

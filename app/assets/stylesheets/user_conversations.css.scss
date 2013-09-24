@@ -25,11 +25,26 @@
 		.delete-con{
 			display: inline-block;
 		}
+		.msg-head{
+			color: #2B44FF;
+		}
 	}
 }
 
 .unread{
 	background-color: #eee;
+}
+
+.con-msg-time{
+	margin-top: -5px;
+}
+
+.msg-body{
+	color: #4066FF;
+}
+
+.msg-head{
+	color: #001EFF;
 }
 
 

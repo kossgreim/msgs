@@ -1,2 +1,4 @@
 $('#messages-area').html("<%=j render "messages/messages", messages: @messages %>");
-$('#message-body').val(' ')
+$('#messages-area').scrollTop($('#messages-area')[0].scrollHeight);
+$("#message_body").val(" ");
+

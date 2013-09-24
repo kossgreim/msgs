@@ -4,11 +4,11 @@ class UserConversationsController < ApplicationController
 
 	def index 
 		@user = User.find(current_user)
-		@conversations = @user.user_conversations
+		@conversations = @user.user_conversations.order('created_at DESC')
 	end
 
 	def show 
-		@conversation = UserConversation.find(params[:id])
+		@conversation = UserConversation.find(params[:id]) 
 		check_messages(@conversation)
 		@message = Message.new(conversation_id: @conversation.conversation_id, user_id: current_user[:id])
 
@@ -27,10 +27,13 @@ class UserConversationsController < ApplicationController
 	end
 
 	def create 
+		#before creating new converestion, I should make sure if not already exist conversations between those users 
+
 		@conversation = UserConversation.new(user_conversation_params)
 		@conversation.user = current_user
-	
 		@conversation.conversation.messages.first.user = current_user
+		@conversation.conversation.between = @conversation.to 
+		@conversation.conversation.between << current_user[:id]
 		
 		@conversation.save!
 		
@@ -80,6 +83,20 @@ class UserConversationsController < ApplicationController
 				m.update_attributes read: true
 			end
 		end
+	end
+
+	#if exsist some conversation betwenn current users, thet method returns this conversations id
+	def check_conversation(between_users)
+		@current_user_conversations = UserConversation.select(:conversation_id).where(user_id: current_user[:id])
+
+		@current_user_conversations.each do |con|
+			if con.between.sort == between_users.sort
+				return con.id
+			end
+		end
+
+		return false
+
 	end
 
 	private 
