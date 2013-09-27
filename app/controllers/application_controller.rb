@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
  
   before_filter :configure_permitted_parameters, if: :devise_controller?
   helper_method :get_count_of_unread_messages
+
+  before_filter :set_last_request_at, if: :user_signed_in?
+
+  def set_last_request_at
+     current_user.update_attribute(:last_request_at, Time.now) 
+  end
   
   def get_count_of_unread_messages
       user_con = User.find(current_user).user_conversations

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924181347) do
+ActiveRecord::Schema.define(version: 20130927080649) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20130924181347) do
     t.string   "name",                   default: "", null: false
     t.string   "user_name",              default: "", null: false
     t.text     "bio"
+    t.datetime "last_request_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

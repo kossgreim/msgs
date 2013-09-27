@@ -9,7 +9,8 @@
           <%= image_tag friendship.friend.avatar.url(:thumb) %>
         </td>
         <td class='users-name-field'>
-          <%= link_to friendship.friend.name, user_profile_path(friendship.friend.user_name) %>
+          <%= link_to friendship.friend.name, user_profile_path(friendship.friend.user_name) %><br>
+          <span class="user-status"><%= check_user_status(friendship.friend.id) %></span>
         </td>
         <td class='users-controls-field'>
           <%= link_to "Send a message", '#message_model', :class => 'message-link', "data-toggle" => "modal", 
@@ -33,7 +34,8 @@
           <%= image_tag user.avatar.url(:thumb) %>
         </td>
         <td class='users-name-field'>
-          <%= link_to user.name, "/#{user.user_name}" %>
+          <%= link_to user.name, user_profile_path(user.id) %><br>
+          <span class="user-status"><%= check_user_status(user.id) %></span>
         </td>
         <td class='users-controls-field'>
           <%= link_to 'Send message', '' %>
