@@ -29,6 +29,6 @@ class FriendshipsController < ApplicationController
   private 
 
   def friendship_params
-    params.requare(:friendship).permit(:user_id, :friend_id)
+    params.requare(:friendship).permit(:user_id, :friend_id, :confirmed)
   end
 end
