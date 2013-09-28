@@ -4,6 +4,8 @@ class FriendshipsController < ApplicationController
   def index 
     @user = current_user
 
+    @real_friends = Friendship.where(user_id: current_user[:id], confirmed: true)
+
     @user_c = User.find(current_user)
     @friends = @user.friendships
 
