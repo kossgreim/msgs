@@ -2,6 +2,12 @@ class FriendshipsController < ApplicationController
   before_filter :authenticate_user! 
   
   def index 
+
+    if params[:section] == 'requests'
+      @requests = current_user.friends_requests
+      render("requests", requests: @requests)
+    end
+
     @user = current_user
 
     @real_friends = Friendship.where(user_id: current_user[:id], confirmed: true)
@@ -22,10 +28,16 @@ class FriendshipsController < ApplicationController
     end
   end
 
+
+
   def destroy
     @friendship = current_user.friendships.find(params[:id])
     @friendship.destroy
     redirect_to root_url, :notice => "Friend was removed"
+  end
+
+  def count_of_friends_requests
+    current_user.friends_requests.count 
   end
 
   private 
