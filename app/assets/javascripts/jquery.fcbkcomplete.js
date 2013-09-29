@@ -494,7 +494,7 @@
 
       var options = $.extend({
         json_url: null,
-        width: 512,
+        width: 460,
         cache: false,
         height: "10",
         newel: false,
