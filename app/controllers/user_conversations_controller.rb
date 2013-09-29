@@ -35,8 +35,8 @@ class UserConversationsController < ApplicationController
 		@conversation = UserConversation.new(user_conversation_params)
 		@conversation.user = current_user
 		@conversation.conversation.messages.first.user = current_user
-		@conversation.conversation.between = @conversation.to 
-		#@conversation.conversation.between << current_user[:id]
+		@conversation.conversation.between = @conversation.to.dup
+		@conversation.conversation.between << current_user[:id]
 		
 		@conversation.save!
 		
