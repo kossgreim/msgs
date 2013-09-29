@@ -16,7 +16,7 @@
           </td>
           <td class='users-controls-field'>
             <%= link_to "Send a message", '#message_model', :class => 'message-link', "data-toggle" => "modal", 
-                    "user-id" => "#{friendship.friend.id}"  %>
+                    "user_id" => "#{friendship.friend.id}", "user_name" => "#{friendship.friend.name}"  %>
             <br><%= link_to "Remove friend", friendship, :method => :delete, confirm: "Are you sure?" %>
           </td>
         </tr>
