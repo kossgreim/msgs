@@ -11,10 +11,12 @@ class User < ActiveRecord::Base
   validates :user_name, uniqueness: true
 
   #for friends 
-  has_many :friendships
+  has_many :friendships, conditions: "confirmed = true"
   has_many :friends, through: :friendships
-  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
-  has_many :inverse_friends, through: :inverse_friendships, source: :user
+  has_many :freindships_requests, class_name: "Friendship", foreign_key: "user_id", conditions: "confirmed = false"
+  #has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "confirmed = false"
+  has_many :freindships_requests, class_name: "Friendship", foreign_key: "friend_id", conditions: "confirmed = false"
+  has_many :friends_requests, through: :freindships_requests, source: :user
 
   #for conversations
   has_many :user_conversations 

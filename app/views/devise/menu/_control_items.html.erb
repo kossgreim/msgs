@@ -3,7 +3,9 @@
 		<%= link_to "My profile", user_profile_path(current_user[:user_name]) %>
 	</li>
 	<li>
-		<%= link_to "Friends", friends_path %>
+		<%= link_to current_path_of_friends do %>
+			Friends <span class="badge"><%= count_of_friends_requests %></span>
+		<% end %>
 	</li>
 	<li>
 		<%= link_to user_conversations_path do  %>

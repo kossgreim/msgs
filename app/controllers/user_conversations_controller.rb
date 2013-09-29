@@ -15,6 +15,11 @@ class UserConversationsController < ApplicationController
 		if @conversation.deleted?
 			redirect_to user_conversation_path
 		end
+
+		respond_to do |format|
+			format.html
+			format.js {@messages}
+		end
 	end
 
 	def new 

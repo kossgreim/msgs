@@ -1,0 +1,21 @@
+
+<div class="row"><%= link_to "All friends", friends_path %></div>
+<div class="row">
+	<table class='users-list-wrap'>
+	  	<% @requests.each do |user| %>
+	  	<tr class='users-current-user'>
+			<td class='users-image-field'><%= image_tag user.avatar.url(:thumb) %></td>
+			<td class='users-name-field'><%= link_to user.name, user_profile_path(user.user_name) %>
+				<br><span class="user-status"><%= check_user_status(user.id) %></span>
+			</td>
+			<td class='users-controls-field'>
+				<%= link_to "Accept", friends_accept_request_path(request_user_id: user.id), 
+						class: "btn btn-info btn-small" %>
+				<%= link_to "Delete", friends_delete_request_path(request_user_id: user.id), 
+						class: "btn btn-small" %>
+
+			</td>
+		</tr>
+		<% end %>
+	</table>		
+</div>
