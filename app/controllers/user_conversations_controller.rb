@@ -32,12 +32,10 @@ class UserConversationsController < ApplicationController
 	end
 
 	def create 
-		#before creating new converestion, I should make sure if not already exist conversations between those users 
-
 		@conversation = UserConversation.new(user_conversation_params)
 		@conversation.user = current_user
 		@conversation.conversation.messages.first.user = current_user
-		@conversation.conversation.between = @conversation.to 
+		@conversation.conversation.between = @conversation.to.dup
 		@conversation.conversation.between << current_user[:id]
 		
 		@conversation.save!

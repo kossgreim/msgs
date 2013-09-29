@@ -2,8 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
 $ ->
-    $('#messages-area').scrollTop($('#messages-area')[0].scrollHeight); #scroll bottom for chat area
+	if($('#messages-area').length)
+    	$('#messages-area').scrollTop($('#messages-area')[0].scrollHeight); #scroll bottom for chat area
 
 
