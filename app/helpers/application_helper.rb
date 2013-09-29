@@ -15,7 +15,7 @@ module ApplicationHelper
 	end
 
 	def current_path_of_friends
-		if count_of_friends_requests > 0
+		if count_of_friends_requests != "" and count_of_friends_requests > 0 
 			friends_path(section: 'requests')
 		else
 			friends_path

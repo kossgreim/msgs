@@ -25,6 +25,8 @@ Msgs::Application.routes.draw do
 
   get "friends", to: "friendships#index"
   post "friends", to: "friendships#destroy"
+  get "friends/delete_request", to: "friendships#delete_friend_request"
+  get "friends/accept_request", to: "friendships#accept_friend_request"
 
   #url like site.com/username
   get ":user_name", to: "users#show", as: "user_profile"

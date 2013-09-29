@@ -3,10 +3,9 @@
 <div class="span9">
 <h2>My friends</h2>
   <table class='users-list-wrap'>
-      <% for friendship in @real_friends %>
+      <% for friendship in @friends %>
         <% if friendship.confirmed? %>
         
-    
         <tr class='users-current-user'>
           <td class='users-image-field'>
             <%= image_tag friendship.friend.avatar.url(:thumb) %>
@@ -21,6 +20,7 @@
             <br><%= link_to "Remove friend", friendship, :method => :delete, confirm: "Are you sure?" %>
           </td>
         </tr>
+        
       <% end %> 
     <% end %>
   </table>    
