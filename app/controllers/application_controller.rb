@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
  
   before_filter :configure_permitted_parameters, if: :devise_controller?
   helper_method :get_count_of_unread_messages
+
+  before_filter :set_last_request_at, if: :user_signed_in?
+
+  def set_last_request_at
+     current_user.update_attribute(:last_request_at, Time.now) 
+  end
   
   def get_count_of_unread_messages
       user_con = User.find(current_user).user_conversations
@@ -24,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up){ |u| u.permit(:name, :user_name, :avatar, :email, :password) }
-    devise_parameter_sanitizer.for(:account_update){ |u| u.permit(:name, :user_name, :avatar, :email, :password, :current_password) }
+    devise_parameter_sanitizer.for(:account_update){ |u| u.permit(:name, :bio, :user_name, :avatar, :email, :password, :current_password) }
   end
 
   def not_found
