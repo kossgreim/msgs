@@ -18,7 +18,7 @@ class UserConversationsController < ApplicationController
 
 		respond_to do |format|
 			format.html
-			format.js {@messages}
+			format.js 
 		end
 	end
 

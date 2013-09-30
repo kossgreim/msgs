@@ -3,6 +3,11 @@ class MessagesController < ApplicationController
   def index 
       @conversation = UserConversation.find(params[:user_conversation_id])
       @messages = @conversation.messages
+
+      if params[:act] == 'get_messages'
+        render layout: false
+      end
+
   end
 
   def new

@@ -7,9 +7,9 @@ class FriendshipsController < ApplicationController
     if params[:section] == 'requests'
       @requests = current_user.friends_requests
       render("requests", requests: @requests)
+    else
+      @friends = @user.friendships
     end
-
-    @friends = @user.friendships
 
     @conversation = @user.user_conversations.build
     @conversation.build_conversation.messages.build
