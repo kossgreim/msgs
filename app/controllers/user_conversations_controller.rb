@@ -4,7 +4,7 @@ class UserConversationsController < ApplicationController
 
 	def index 
 		@user = User.find(current_user)
-		@conversations = @user.user_conversations.order('created_at DESC')
+		@conversations = @user.user_conversations.order('updated_at DESC')
 	end
 
 	def show 

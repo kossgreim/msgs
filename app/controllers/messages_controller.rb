@@ -4,9 +4,9 @@ class MessagesController < ApplicationController
       @conversation = UserConversation.find(params[:user_conversation_id])
       @messages = @conversation.messages
 
-      if params[:act] == 'get_messages'
-        render layout: false
-      end
+      #if params[:act] == 'get_messages'
+       # render "messages/messages", layout: false
+     # end
 
   end
 
