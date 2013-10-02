@@ -4,14 +4,14 @@ class UserConversationsController < ApplicationController
 
 	def index 
 		@user = User.find(current_user)
-		@conversations = @user.user_conversations.order('updated_at DESC')
+		@conversations = @user.user_conversations.order('last_message_at DESC')
 	end
 
 	def show 
 		@conversation = UserConversation.find(params[:id]) 
 		check_messages(@conversation)
 		@message = Message.new(conversation_id: @conversation.conversation_id, user_id: current_user[:id])
-
+		
 		if @conversation.deleted?
 			redirect_to user_conversation_path
 		end
@@ -25,10 +25,8 @@ class UserConversationsController < ApplicationController
 	def new 
 		@user = User.find(current_user)
 		@friends = @user.friendships
-
 		@conversation = @user.user_conversations.build
 		@conversation.build_conversation.messages.build
-
 	end
 
 	def create 
@@ -37,7 +35,6 @@ class UserConversationsController < ApplicationController
 		@conversation.conversation.messages.first.user = current_user
 		@conversation.conversation.between = @conversation.to.dup
 		@conversation.conversation.between << current_user[:id]
-		
 		@conversation.save!
 		
 		if !@conversation.to.blank?
@@ -52,21 +49,18 @@ class UserConversationsController < ApplicationController
 	def mark_as_read
 		@conversation = UserConversation.find(params[:id])
 		@conversation.update_attributes read: true
-
 		redirect_to user_conversation_path(current_user, @conversation)
 	end
 
 	def mark_us_unread
 		@conversation = UserConversation.find(params[:id])
 		@conversation.update_attributes read: false
-
 		redirect_to user_conversation_path(current_user, @conversation)
 	end
 
 	def destroy
 		@conversation = UserConversation.find(params[:id])
 		@conversation.update_attributes deleted: true
-
 		@conversations = User.find(current_user).user_conversations
 
 		respond_to do |format|
@@ -91,15 +85,12 @@ class UserConversationsController < ApplicationController
 	#if exsist some conversation betwenn current users, thet method returns this conversations id
 	def check_conversation(between_users)
 		@current_user_conversations = UserConversation.select(:conversation_id).where(user_id: current_user[:id])
-
-		@current_user_conversations.each do |con|
+		@current_user_conversations.each do |con|	
 			if con.between.sort == between_users.sort
 				return con.id
 			end
 		end
-
 		return false
-
 	end
 
 	private 
