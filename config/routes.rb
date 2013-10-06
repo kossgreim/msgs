@@ -14,6 +14,7 @@ Msgs::Application.routes.draw do
   
   root "users#index"
   devise_for :users
+  get "users/search", to: "users#search", as: "users_search"
   
   devise_scope :user do 
     get "sign_in", to: "devise/sessions#new"

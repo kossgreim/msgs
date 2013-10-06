@@ -22,6 +22,14 @@ class User < ActiveRecord::Base
   has_many :conversations, through: :user_conversations
   has_many :messages, through: :conversations
 
+  def self.search(search)
+    if search
+      where("name, username, email, LIKE %#{search}%")
+    else
+      scoped
+    end
+  end
+
   
   
 end
