@@ -9,6 +9,9 @@ class UsersController < ApplicationController
 
 	def search 
 		@users = User.search(params[:search])
-
+		respond_to do |format|
+			format.html
+			format.js {@users}
+		end
 	end
 end
