@@ -1,4 +1,4 @@
-<% if users  %>
+<% if users.count > 0 %>
 	<% users.each do |user| %>
 	  	<tr class='users-current-user'>
 			<td class='users-image-field'><%= image_tag user.avatar.url(:thumb) %></td>
@@ -9,5 +9,5 @@
 		</tr>
 	<% end %>
 <% else %>
-	<span class="items-not-found">Items not found</span>
+	<span class="items-not-found">Nothing to found</span>
 <% end %>
