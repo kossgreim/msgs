@@ -1,25 +1,26 @@
-<%= link_to "Find Friends", users_path %>
-
+<%= render "friendships/shared/nav" %>
 <div class="span9">
 <h2>My friends</h2>
   <table class='users-list-wrap'>
       <% for friendship in @friends %>
         <% if friendship.confirmed? %>
-        
-        <tr class='users-current-user'>
-          <td class='users-image-field'>
-            <%= image_tag friendship.friend.avatar.url(:thumb) %>
-          </td>
-          <td class='users-name-field'>
-            <%= link_to friendship.friend.name, user_profile_path(friendship.friend.user_name) %><br>
-            <span class="user-status"><%= check_user_status(friendship.friend.id) %></span>
-          </td>
-          <td class='users-controls-field'>
-            <%= link_to "Send a message", '#message_model', :class => 'message-link', "data-toggle" => "modal", 
-                    "user_id" => "#{friendship.friend.id}", "user_name" => "#{friendship.friend.name}"  %>
-            <br><%= link_to "Remove friend", friendship, :method => :delete, confirm: "Are you sure?" %>
-          </td>
-        </tr>
+          <% if !check_user_status(friendship.friend.id, true) and params[:section] == 'online' %>
+            <% break %>
+          <% end %>
+          <tr class='users-current-user'>
+            <td class='users-image-field'>
+              <%= image_tag friendship.friend.avatar.url(:thumb) %>
+            </td>
+            <td class='users-name-field'>
+              <%= link_to friendship.friend.name, user_profile_path(friendship.friend.user_name) %><br>
+              <span class="user-status"><%= check_user_status(friendship.friend.id) %></span>
+            </td>
+            <td class='users-controls-field'>
+              <%= link_to "Send a message", '#message_model', :class => 'message-link', "data-toggle" => "modal", 
+                      "user_id" => "#{friendship.friend.id}", "user_name" => "#{friendship.friend.name}"  %>
+              <br><%= link_to "Remove friend", friendship, :method => :delete, confirm: "Are you sure?" %>
+            </td>
+          </tr>
         
       <% end %> 
     <% end %>

@@ -4,12 +4,10 @@
 			<%= image_tag @user.avatar(:thumb) %>
 		</div>
 	</div>
-
 	<div class="right_block">
 		<span class="user_name"><%= @user.name %>
 			<span class="user-status"><%= check_user_status(@user.id) %></span>
 		</span></br>
-		
 		<div class="user-bio">
 			<%= @user.bio %>
 		</div>

@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
       cnt = 0
       for con in user_con 
         result = Message.where(conversation_id: con.conversation_id, read: false).where("user_id <> ?", current_user[:id]).count
-        cnt += result
+        cnt += result 
+        con.update_attributes(deleted: false) if con.deleted? 
 
         if result != 0
             con.update_attributes read: false

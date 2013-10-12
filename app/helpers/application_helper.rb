@@ -1,12 +1,12 @@
 module ApplicationHelper
 
-	def check_user_status(user_id)
+	def check_user_status(user_id, type=false)
 		user = User.find(user_id)
 
 		if user.last_request_at > 5.minutes.ago 
-			return "Online"
+			type ? true : "Online"
 		else
-			return "Offline"
+			type ? false : "Offline"
 		end
 	end
 
