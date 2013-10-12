@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 			@limit = 3
 		end
 		@all_users_count = User.count
-		@users = User.all.limit(@limit)
+		@users = User.all.order("name").limit(@limit)
 		@options = {users: @users, limit: @limit}
 		respond_to do |format|
 			format.html

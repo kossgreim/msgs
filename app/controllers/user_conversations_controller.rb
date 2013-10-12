@@ -11,10 +11,8 @@ class UserConversationsController < ApplicationController
 		@conversation = UserConversation.find(params[:id]) 
 		check_messages(@conversation)
 		@message = Message.new(conversation_id: @conversation.conversation_id, user_id: current_user[:id])
+		redirect_to user_conversation_path if @conversation.deleted?
 		
-		if @conversation.deleted?
-			redirect_to user_conversation_path
-		end
 		respond_to do |format|
 			format.html
 			format.js 
@@ -37,9 +35,7 @@ class UserConversationsController < ApplicationController
 		@conversation.save!
 		
 		if !@conversation.to.blank?
-			@conversation.to.each do |t|
-				UserConversation.create :user_id => t, :conversation => @conversation.conversation
-			end
+			@conversation.to.each { |t| UserConversation.create user_id: t, conversation: @conversation.conversation }
 		end
 
 		redirect_to user_conversation_path(@conversation)
@@ -68,26 +64,17 @@ class UserConversationsController < ApplicationController
 	end
 
 	def check_messages(conversation)
-		messages = Message.where(conversation_id: conversation.conversation_id).where("user_id <> ?", current_user[:id])
-
-		if !conversation.read?
-			conversation.update_attributes read: true
-		end
-
-		messages.each do |m|
-			if !m.read?
-				m.update_attributes read: true
-			end
-		end
+		messages = Message.where(conversation_id: conversation.conversation_id).where("user_id <> ?", current_user[:id]).where(read: false)
+		conversation.update_attributes read: true unless conversation.read?
+		
+		messages.each {|m| m.update_attributes read: true if !m.read?}
 	end
 
 	#if exsist some conversation between current users, then method returns this conversations id
 	def check_conversation(between_users)
 		@current_user_conversations = UserConversation.select(:conversation_id).where(user_id: current_user[:id])
 		@current_user_conversations.each do |con|	
-			if con.between.sort == between_users.sort
-				return con.id
-			end
+			return con.id if con.between.sort == between_users.sort
 		end
 		return false
 	end
