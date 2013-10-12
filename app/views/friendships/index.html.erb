@@ -1,6 +1,7 @@
 <%= render "friendships/shared/nav" %>
 <div class="span9">
 <h2>My friends</h2>
+<% if count_of_friends(current_user[:id]) != 0 %>
   <table class='users-list-wrap'>
       <% for friendship in @friends %>
         <% if friendship.confirmed? %>
@@ -25,7 +26,9 @@
       <% end %> 
     <% end %>
   </table>    
-
+<% else %>
+  <span class="empty-list"><%= get_text_of_empty_list %></span>
+<% end %>
 </div>
 
 <%= render "friendships/shared/new_message", conversation: @conversation, friends: @friends %>

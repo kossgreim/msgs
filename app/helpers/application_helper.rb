@@ -22,4 +22,12 @@ module ApplicationHelper
 		end
 	end
 
+	def count_of_friends(user_id)
+		if params[:section] == 'online'
+			Friendship.count_friends(user_id, 'online')
+		else
+			Friendship.count_friends(user_id)
+		end
+	end
+
 end
