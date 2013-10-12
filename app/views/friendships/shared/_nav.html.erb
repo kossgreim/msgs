@@ -1,0 +1,11 @@
+<div class="navbar navbar-fluid-top">
+  <div class="container-fluid">
+    <div class="container-fluid nav-collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "All friends", friends_path %></li>
+        <li><%= link_to "Online friends", friends_path(section: "online") %></li>
+        <li><%= link_to "Find friends", users_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>

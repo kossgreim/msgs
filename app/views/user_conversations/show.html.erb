@@ -1,5 +1,4 @@
 <h1><%= @conversation.subject %></h1>
-
 <div class="row">
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
@@ -18,12 +17,13 @@
     </div>
   </div>
 </div><br>
-
 <div class="row">
+  <div class="span9">
   <div class="media-list" id="messages-area">
     <%= render "messages/messages", messages: @conversation.messages.limit(25) %>
   </div>
   <%= render "messages/write", message: @message %>
+</div>
 </div>
 
 <%= link_to "Back to conversations", user_conversations_path(@user) %>
