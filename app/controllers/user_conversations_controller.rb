@@ -15,7 +15,6 @@ class UserConversationsController < ApplicationController
 		if @conversation.deleted?
 			redirect_to user_conversation_path
 		end
-
 		respond_to do |format|
 			format.html
 			format.js 
@@ -82,7 +81,7 @@ class UserConversationsController < ApplicationController
 		end
 	end
 
-	#if exsist some conversation betwenn current users, thet method returns this conversations id
+	#if exsist some conversation between current users, then method returns this conversations id
 	def check_conversation(between_users)
 		@current_user_conversations = UserConversation.select(:conversation_id).where(user_id: current_user[:id])
 		@current_user_conversations.each do |con|	

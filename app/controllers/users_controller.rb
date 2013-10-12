@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
 	def index 
-		@users = User.all.limit(25)
+		if params[:previus_limit]
+			@limit = params[:previus_limit].to_i + 10
+		else
+			@limit = 3
+		end
+		@all_users_count = User.count
+		@users = User.all.limit(@limit)
+		@options = {users: @users, limit: @limit}
+		respond_to do |format|
+			format.html
+			format.js{@options}
+		end
 	end
 
 	def show 

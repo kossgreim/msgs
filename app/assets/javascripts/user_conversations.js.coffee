@@ -3,8 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-
-
 $ ->
 	if($('#messages-area').length)
     	$('#messages-area').scrollTop($('#messages-area')[0].scrollHeight) #scroll bottom for chat area
