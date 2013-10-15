@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131001214507) do
+ActiveRecord::Schema.define(version: 20131015174945) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject"
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 20131001214507) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "read",            default: false
+  end
+
+  create_table "roles", force: true do |t|
+    t.string "role"
   end
 
   create_table "user_conversations", force: true do |t|
@@ -69,6 +73,8 @@ ActiveRecord::Schema.define(version: 20131001214507) do
     t.text     "bio"
     t.datetime "last_request_at"
     t.datetime "last_sign_out_at",       default: '2013-09-28 13:52:53'
+    t.integer  "roles_mask"
+    t.string   "role",                   default: "user"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

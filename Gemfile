@@ -31,8 +31,6 @@ gem 'jbuilder', '~> 1.2'
 
 gem "jquery-ui-rails", "~> 4.0.5"
 
-gem 'jquery-multiselect-rails', :git => 'git://github.com/arojoal/jquery-multiselect-rails.git'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -49,6 +47,10 @@ gem 'paperclip'
 gem "nifty-generators", :group => :development
 
 gem 'mocha', :require => false
+
+gem 'will_paginate-bootstrap'
+
+gem 'role_model'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

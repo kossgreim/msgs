@@ -2,8 +2,10 @@
   <% for conversation in conversations do %>
     <% if !conversation.deleted? %>
         <div class="list-group-item <%= check_read_status(conversation) %> ">
-            <%= link_to 'delete', user_conversation_path(conversation), method: :delete, 
-                    class: "pull-right delete-con", remote: true, confirm: "are you sure?" %>
+            <% if can? :destroy, UserConversation %>
+                <%= link_to 'delete', user_conversation_path(conversation), method: :delete, 
+                    class: "pull-right delete-con", remote: true, confirm: "are you sure?"  %>
+            <% end %>
             <%= link_to user_conversation_path(conversation) do %>
             	    <h4 class="list-group-item-heading msg-head"><%= conversation.subject %></h4>
             	    <p class="list-group-item-text">

@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_last_request_at, if: :user_signed_in?
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
+
   def set_last_request_at
      current_user.update_attribute(:last_request_at, Time.now) 
   end
@@ -28,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up){ |u| u.permit(:name, :user_name, :avatar, :email, :password) }
-    devise_parameter_sanitizer.for(:account_update){ |u| u.permit(:name, :bio, :user_name, :avatar, :email, :password, :current_password) }
+    devise_parameter_sanitizer.for(:account_update){ |u| u.permit(:name, :bio, :user_name, :avatar, :email, :password, :current_password, :roles) }
   end
 
   def not_found

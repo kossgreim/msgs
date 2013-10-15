@@ -25,4 +25,8 @@ class UsersController < ApplicationController
 			format.js {@users}
 		end
 	end
+
+	def roles 
+		@user = User.find(10)
+	end
 end

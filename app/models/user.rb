@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :conversations, through: :user_conversations
   has_many :messages, through: :conversations
 
+  ROLES = %w['admin', 'user', 'guest']
+
   def self.search(search)
     if search
       where("name LIKE '%#{search}%'")
@@ -29,7 +31,5 @@ class User < ActiveRecord::Base
       scoped
     end
   end
-
-  
   
 end
