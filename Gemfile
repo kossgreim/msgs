@@ -46,11 +46,14 @@ gem 'paperclip'
 
 gem "nifty-generators", :group => :development
 
-gem 'mocha', :require => false
-
 gem 'will_paginate-bootstrap'
 
 gem 'role_model'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem "mocha", :require => false
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -63,5 +66,3 @@ gem 'role_model'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-gem "mocha", group: :test

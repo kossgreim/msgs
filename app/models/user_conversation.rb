@@ -11,6 +11,11 @@ class UserConversation < ActiveRecord::Base
 
 	#before_create :create_user_conversations
 	
+	#def check_messages(user_id)
+	#	messages = Message.unread_messages(self.id, user_id)
+	#	self.update_attributes read: true unless self.read?
+	#	messages.each {|m| m.update_attributes read: true unless m.read?}
+	#end
 
 	private
 

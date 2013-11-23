@@ -14,14 +14,14 @@ class ApplicationController < ActionController::Base
 
 
   def set_last_request_at
-     current_user.update_attribute(:last_request_at, Time.now) 
+    current_user.update_attribute(:last_request_at, Time.now)
   end
   
   def get_count_of_unread_messages
-      user_con = User.find(current_user).user_conversations
+      user_conversations = User.find(current_user).user_conversations
       cnt = 0
-      for con in user_con 
-        result = Message.where(conversation_id: con.conversation_id, read: false).where("user_id <> ?", current_user[:id]).count
+      user_conversations.each do |con| 
+        result = Message.unread_messages(con.id, current_user.id).count
         cnt += result 
         con.update_attributes(deleted: false) if con.deleted? 
         con.update_attributes read: false  if result != 0
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-  	respond_to do |format|
+    respond_to do |format|
       format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
       format.xml  { head :not_found }
       format.any  { head :not_found }

@@ -3,7 +3,6 @@ class FriendshipsController < ApplicationController
   
   def index 
     @user = current_user
-
     if params[:section] == 'requests'
       @requests = current_user.friends_requests
       render("requests", requests: @requests)
@@ -20,12 +19,12 @@ class FriendshipsController < ApplicationController
     if @friendship.save
       redirect_to root_url, :notice => "Added friend."
     else
-     redirect_to users_path, :notice => 'Unable to add friend'
+      redirect_to users_path, :notice => 'Unable to add friend'
     end
   end
 
   def accept_friend_request
-      @current_request = Friendship.where(user_id: params[:request_user_id], friend_id: current_user[:id])
+      @current_request = Friendship.where(user_id: params[:request_user_id], friend_id: current_user.id)
       @current_request.first.update_attributes confirmed: true
       
       @new_friendship = Friendship.new(user_id: current_user[:id], friend_id: params[:request_user_id], confirmed: true)

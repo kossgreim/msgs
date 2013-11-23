@@ -5,7 +5,7 @@ class CreateUserConversations < ActiveRecord::Migration
       t.integer :conversation_id
       t.boolean :deleted
       t.boolean :read
-
+      t.datetime :last_message_at
       t.timestamps
     end
   end

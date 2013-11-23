@@ -46,12 +46,14 @@ ActiveRecord::Schema.define(version: 20131015174945) do
     t.integer  "conversation_id"
     t.boolean  "deleted"
     t.boolean  "read",            default: false
+    t.datetime "last_message_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "last_message_at"
   end
 
   create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "user_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "",                    null: false
@@ -68,11 +70,9 @@ ActiveRecord::Schema.define(version: 20131015174945) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "name",                   default: "",                    null: false
-    t.string   "user_name",              default: "",                    null: false
     t.text     "bio"
     t.datetime "last_request_at"
-    t.datetime "last_sign_out_at",       default: '2013-09-28 13:52:53'
+    t.datetime "last_sign_out_at",       default: '2013-11-23 23:02:20'
     t.integer  "roles_mask"
     t.string   "role",                   default: "user"
   end

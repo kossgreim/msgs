@@ -41,18 +41,6 @@ class UserConversationsController < ApplicationController
 		redirect_to user_conversation_path(@conversation)
 	end
 
-	def mark_as_read
-		@conversation = UserConversation.find(params[:id])
-		@conversation.update_attributes read: true
-		redirect_to user_conversation_path(current_user, @conversation)
-	end
-
-	def mark_us_unread
-		@conversation = UserConversation.find(params[:id])
-		@conversation.update_attributes read: false
-		redirect_to user_conversation_path(current_user, @conversation)
-	end
-
 	def destroy
 		@conversation = UserConversation.find(params[:id])
 		@conversation.update_attributes deleted: true
@@ -67,7 +55,7 @@ class UserConversationsController < ApplicationController
 		messages = Message.where(conversation_id: conversation.conversation_id).where("user_id <> ?", current_user[:id]).where(read: false)
 		conversation.update_attributes read: true unless conversation.read?
 		
-		messages.each {|m| m.update_attributes read: true if !m.read?}
+		messages.each {|m| m.update_attributes read: true unless m.read?}
 	end
 
 	#if exsist some conversation between current users, then method returns this conversations id
