@@ -3,7 +3,7 @@ class UserConversationsController < ApplicationController
 	before_action :set_conversation, only: [:show, :edit, :update, :destroy]
 
 	def index 
-		@user = User.find(current_user)
+		@user = User.includes(:user_conversations).find(current_user)
 		@conversations = @user.user_conversations.order('last_message_at DESC')
 	end
 
@@ -20,7 +20,7 @@ class UserConversationsController < ApplicationController
 	end
 
 	def new 
-		@user = User.find(current_user)
+		@user = User.includes(:friendships).find(current_user)
 		@friends = @user.friendships
 		@conversation = @user.user_conversations.build
 		@conversation.build_conversation.messages.build

@@ -1,7 +1,7 @@
 class UserConversation < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :conversation
-	has_many :messages, through: :conversation
+	has_many :messages, through: :conversation, dependent: :destroy
 	attr_accessor :to
 	accepts_nested_attributes_for :conversation, allow_destroy: true
 

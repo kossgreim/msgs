@@ -12,15 +12,15 @@ class User < ActiveRecord::Base
 
   #for friends 
   has_many :friendships, conditions: "confirmed = true"
-  has_many :friends, through: :friendships
+  has_many :friends, through: :friendships, dependent: :destroy
   has_many :freindships_requests, class_name: "Friendship", foreign_key: "user_id", conditions: "confirmed = false"
   has_many :freindships_requests, class_name: "Friendship", foreign_key: "friend_id", conditions: "confirmed = false"
   has_many :friends_requests, through: :freindships_requests, source: :user
 
   #for conversations
-  has_many :user_conversations 
+  has_many :user_conversations, dependent: :destroy
   has_many :conversations, through: :user_conversations
-  has_many :messages, through: :conversations
+  has_many :messages, through: :conversations, dependent: :destroy
 
   ROLES = %w['admin', 'user', 'guest']
 
